@@ -3,91 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosotros | Bottle Code Studio</title>
-    <!-- Preload Critical Fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap" as="style">
+    <title>Estudio | ChilliCode Agency</title>
     
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Nuestra historia y valores en ChilliCode. Artesanía digital desde el corazón de México.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
-<body class="dark-mode">
-    <div class="viewport-mask-top"></div>
-    <div class="viewport-mask-bottom"></div>
+<body>
 
+    <!-- 3D Layer (Optional or static for subpages) -->
+    <div class="model-container" style="opacity: 0.2;">
+        <model-viewer id="skull-model-static" 
+            src="https://raw.githubusercontent.com/UniteGroupTeam/mis-modelos-3d-v2-0/main/calavera_sugar_skull.glb"
+            auto-rotate
+            camera-orbit="45deg 75deg 3m"
+            disable-zoom
+            disable-pan>
+        </model-viewer>
+    </div>
+
+    <!-- Navigation -->
     <nav class="pill-nav">
         <div class="nav-content">
-            <div class="logo">
-                <a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                    Bottle<span>code</span>
-                </a>
-            </div>
+            <a href="index.html" class="logo">
+                <img src="https://i.imgur.com/QTzmlBC.png" alt="ChilliCode Logo" class="logo-img">
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="nosotros.html" class="active">Nosotros</a></li>
-                <li><a href="index.html#contacto">Contacto</a></li>
+                <li><a href="nosotros.html" class="active">Estudio</a></li>
+                <li><a href="index.html#servicios">Oficios</a></li>
+                <li><a href="index.html#proyectos">Obra</a></li>
             </ul>
+            <a href="index.html#contacto" class="nav-cta">Contactar</a>
         </div>
     </nav>
 
-    <main>
-        <header class="container" style="padding: 200px 0 100px; text-align: center;">
-            <span class="section-badge" style="margin-bottom: 2rem;">VANGUARDIA</span>
-            <h1 class="title" style="font-size: clamp(3.5rem, 10vw, 7rem); line-height: 0.9;">Ecosistemas de <br><span class="accent-underline">clase mundial</span></h1>
-            <p class="subtitle" style="max-width: 800px; margin: 3rem auto; font-size: 1.4rem;">Colaboramos con referentes del sector como <strong>Claude, OpenAI, Google y Pinterest</strong> para construir productos digitales de alto nivel. Elevamos marcas mediante tecnología de punta.</p>
-            
-            <div class="gallery-grid reveal" style="margin-top: 5rem;">
-                <div class="gallery-item"><img src="https://i.imgur.com/jEMmRDD.png" alt="Ecosystem 1"></div>
-                <div class="gallery-item"><img src="https://i.imgur.com/okLctpj.png" alt="Ecosystem 2"></div>
-                <div class="gallery-item"><img src="https://i.imgur.com/4YRkvKI.png" alt="Ecosystem 3"></div>
-                <div class="gallery-item"><img src="https://i.imgur.com/Vhpeepk.png" alt="Ecosystem 4"></div>
+    <main id="main-content">
+        <header class="section hero">
+            <div class="container">
+                <div class="content-wrapper">
+                    <span class="badge">Nuestra Esencia</span>
+                    <h1 class="title">Honramos la <br><span>Tradición</span> a través <br>del Código.</h1>
+                    <p class="subtitle">En ChilliCode, creemos que el software debe ser tratado con el mismo respeto que una pieza de arte hecho a mano.</p>
+                </div>
             </div>
         </header>
 
-        <section class="container" style="padding: 100px 0;">
-            <div class="section-header center">
-                <span class="section-badge">NUESTROS VALORES</span>
-                <h2 class="title">Lo que creemos</h2>
-            </div>
-            <div class="philosophy-quote reveal" style="margin: 4rem auto; font-size: 2.2rem; border-left: 4px solid var(--brand-pink); padding-left: 2rem; text-align: left; max-width: 800px;">
-                "No diseñamos para seguir tendencias pasajeras. Diseñamos para construir criterio, claridad y coherencia a largo plazo."
-            </div>
-            <div class="services-grid" style="margin-top: 4rem;">
-                <div class="service-card reveal">
-                    <h3>Sin plantillas</h3>
-                    <p>Cada decisión —desde la arquitectura hasta el último detalle visual— tiene una razón técnica y estratégica. No producimos en masa; creamos piezas únicas.</p>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Nuestra Filosofía</h2>
                 </div>
-                <div class="service-card reveal">
-                    <h3>Criterio y Profundidad</h3>
-                    <p>Diseñamos para construir claridad y coherencia a largo plazo. Un sitio web es un objeto estratégico, no solo un canal digital.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="container" style="padding: 100px 0;">
-            <div class="section-header center">
-                <span class="section-badge">EQUIPO</span>
-                <h2 class="title">La gente detrás del código</h2>
-            </div>
-            <div class="team-grid" style="margin-top: 4rem;">
-                <div class="team-card reveal">
-                    <div class="team-avatar" style="width: 120px; height: 120px; background: #111; border: 1px solid rgba(255,51,153,0.3); margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 2rem; font-weight: 800;">LR</div>
-                    <h3 style="margin-top: 1.5rem;">Luis Rodrigo</h3>
-                    <p style="color: var(--brand-pink); font-weight: 600;">Fundador & Director General</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="final-cta">
-            <div class="container" style="position: relative; z-index: 10;">
-                <div class="section-header center">
-                    <h2 class="title">¿Listo para construir <br>algo sólido?</h2>
-                    <p style="margin-bottom: 3rem;">Si buscas profundidad, criterio y una artesanía digital real, hablemos.</p>
-                    <a href="index.html#contacto" class="btn primary">Iniciar Proyecto</a>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="card-icon emerald">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </div>
+                        <h3>Pasión por el Detalle</h3>
+                        <p>No entregamos nada que no consideremos perfecto. El detalle es lo que nos diferencia.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-icon red">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                        </div>
+                        <h3>Herencia y Futuro</h3>
+                        <p>Buscamos inspiración en nuestras raíces para construir soluciones que trasciendan.</p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="main.js" defer></script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 ChilliCode Agency. Digital Craftsmanship Studio.</p>
+                <div class="socials">
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>

@@ -1,220 +1,140 @@
-// Bottle Code Agency - Optimized Logic
-// Senior Web Developer Optimization Suite
-
-document.addEventListener('DOMContentLoaded', () => {
-    const performanceMode = isLowEndDevice();
-    
-    initLazySpline(performanceMode);
-    initScrollAnimations();
-    setupSmoothScroll();
-    initNavbarEffect();
-    initParallaxEffects(performanceMode);
-});
-
 /**
- * Detect low-end devices to toggle performance optimizations
+ * Bottle Code Agency - Digital Craftsmanship
+ * Animation Engine: Fanta-Style Section Transitions
  */
-function isLowEndDevice() {
-    return (
-        window.innerWidth < 768 || 
-        navigator.hardwareConcurrency < 4 || 
-        /Mobi|Android/i.test(navigator.userAgent)
-    );
+
+gsap.registerPlugin(ScrollTrigger);
+
+const modelViewer = document.getElementById('skull-model');
+
+function updateOrbit(azimuth, polar, distance) {
+    modelViewer.cameraOrbit = `${azimuth}deg ${polar}deg ${distance}m`;
 }
 
-/**
- * Lazy load and manage Spline viewers to save GPU/CPU
- */
-function initLazySpline(isLowEnd) {
-    const splines = document.querySelectorAll('spline-viewer[data-url]');
+function initAnimations() {
+    // 1. Initial State (Hero)
+    // Text is on the LEFT, Skull is on the RIGHT
+    gsap.set(modelViewer, { 
+        xPercent: 30, 
+        yPercent: 0, 
+        scale: 1.2, 
+        opacity: 0 
+    });
+    updateOrbit(0, 75, 2);
     
-    const observerOptions = {
-        root: null,
-        rootMargin: '200px',
-        threshold: 0.1
-    };
+    gsap.to(modelViewer, { opacity: 1, duration: 1.5 });
 
-    const splineObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const spline = entry.target;
-            
-            if (entry.isIntersecting) {
-                // Load URL if not loaded
-                if (spline.getAttribute('data-url')) {
-                    const url = spline.getAttribute('data-url');
-                    spline.setAttribute('url', url);
-                    spline.removeAttribute('data-url');
-                    setupWatermarkRemoval(spline);
-                }
-                
-                // Play rendering when visible
-                try {
-                    if (spline.shadowRoot && spline.shadowRoot.querySelector('canvas')) {
-                        // Spline doesn't have a public play() API always available, 
-                        // but we can ensure it's not visibility: hidden
-                        spline.style.visibility = 'visible';
-                        spline.style.opacity = '1';
-                    }
-                } catch (e) {}
+    // 2. Transition: Hero -> Servicios
+    // Triggers when "Nuestra Maestría" section starts coming up
+    const tl1 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".services",
+            start: "top 90%", // Start when section is near bottom
+            end: "top 10%",   // End when section is near top
+            scrub: 1,
+        }
+    });
+
+    tl1.to(modelViewer, {
+        xPercent: -35, // Move to the left
+        scale: 0.7,
+        onUpdate: function() {
+            const p = this.progress();
+            const azimuth = gsap.utils.interpolate(0, 180, p);
+            const polar = gsap.utils.interpolate(75, 90, p);
+            const dist = gsap.utils.interpolate(2, 2.8, p);
+            updateOrbit(azimuth, polar, dist);
+        }
+    });
+
+    // 3. Transition: Servicios -> Proyectos
+    // The skull moves away and fades out smoothly into the background
+    const tl2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".projects",
+            start: "top bottom",
+            end: "top 20%",
+            scrub: 1,
+        }
+    });
+
+    tl2.to(modelViewer, {
+        xPercent: 100, // Moves out of frame to the right
+        yPercent: -50,
+        scale: 0.2,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.inOut",
+        onUpdate: function() {
+            const p = this.progress();
+            const azimuth = gsap.utils.interpolate(180, 360, p);
+            const polar = gsap.utils.interpolate(90, 45, p);
+            const dist = gsap.utils.interpolate(2.8, 6, p);
+            updateOrbit(azimuth, polar, dist);
+        }
+    });
+
+    // 4. Transition: Proyectos -> Contacto
+    const tl3 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".cta",
+            start: "top 95%",
+            end: "top 20%",
+            scrub: 1,
+        }
+    });
+
+    tl3.to(modelViewer, {
+        xPercent: 0,
+        yPercent: -20,
+        scale: 0.4,
+        opacity: 0.2,
+        onUpdate: function() {
+            const p = this.progress();
+            const azimuth = gsap.utils.interpolate(-90, 0, p);
+            const polar = gsap.utils.interpolate(80, 75, p);
+            const dist = gsap.utils.interpolate(2.2, 4, p);
+            updateOrbit(azimuth, polar, dist);
+        }
+    });
+}
+
+// Navbar Scroll Effect
+function initNavbar() {
+    const nav = document.querySelector('.pill-nav');
+    ScrollTrigger.create({
+        start: "top -50",
+        onUpdate: (self) => {
+            if (self.direction === 1) {
+                gsap.to(nav, { y: -20, opacity: 0.8, duration: 0.3 });
             } else {
-                // Pause rendering when not visible to save 80% GPU
-                spline.style.visibility = 'hidden';
-                spline.style.opacity = '0';
+                gsap.to(nav, { y: 0, opacity: 1, duration: 0.3 });
             }
-        });
-    }, observerOptions);
-
-    splines.forEach(spline => {
-        if (isLowEnd && spline.parentElement.classList.contains('spline-background-robot')) {
-            // Remove heavy splines on mobile, keep only hero if necessary
-            spline.parentElement.style.display = 'none';
-        } else {
-            splineObserver.observe(spline);
         }
     });
 }
 
-/**
- * Throttled watermark removal
- */
-function setupWatermarkRemoval(spline) {
-    const hide = (root) => {
-        if (!root) return;
-        const selectors = [
-            '#logo', 
-            '.watermark', 
-            'a[href*="spline.design"]', 
-            '[style*="bottom: 10px"]',
-            '[style*="bottom: 0px"]'
-        ];
-        selectors.forEach(s => {
-            const elements = root.querySelectorAll(s);
-            elements.forEach(el => el.style.display = 'none');
-        });
-    };
-
-    spline.addEventListener('load', () => hide(spline.shadowRoot));
+// Reveal animations for text
+function initReveals() {
+    const revealElements = document.querySelectorAll('.content-wrapper, .service-card, .project-item, .section-header');
     
-    // Efficient polling with exponential backoff
-    let attempts = 0;
-    const poll = () => {
-        attempts++;
-        if (spline.shadowRoot) hide(spline.shadowRoot);
-        if (attempts < 50) setTimeout(poll, attempts * 20);
-    };
-    poll();
-}
-
-/**
- * Optimized Reveal elements with staggered timing
- */
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-                const delay = target.dataset.delay || 0;
-                
-                setTimeout(() => {
-                    target.classList.add('active');
-                }, delay);
-                
-                observer.unobserve(target);
-            }
-        });
-    }, observerOptions);
-
-    const revealElements = document.querySelectorAll('.reveal, .service-card, .process-step, .reveal-init');
-    
-    revealElements.forEach((el, index) => {
-        if (!el.classList.contains('reveal-init')) {
-            el.classList.add('reveal-init');
-        }
-        // Stagger cards automatically if no delay is set
-        if (el.classList.contains('service-card') && !el.dataset.delay) {
-            el.dataset.delay = (index % 4) * 100;
-        }
-        observer.observe(el);
-    });
-}
-
-/**
- * Smooth scroll with easing
- */
-function setupSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                e.preventDefault();
-                const offset = 80;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = targetElement.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
+    revealElements.forEach(el => {
+        gsap.from(el, {
+            scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
         });
     });
 }
 
-/**
- * Throttled Navbar and Scroll effects
- */
-function initNavbarEffect() {
-    const nav = document.getElementById('main-nav');
-    if (!nav) return;
-    
-    let lastScroll = 0;
-    let ticking = false;
-
-    window.addEventListener('scroll', () => {
-        lastScroll = window.scrollY;
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                updateNavbar(lastScroll);
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-
-    function updateNavbar(scrollPos) {
-        if (scrollPos > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    }
-}
-
-/**
- * Subtle parallax for depth without killing performance
- */
-function initParallaxEffects(isLowEnd) {
-    if (isLowEnd) return;
-
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const parallaxElements = document.querySelectorAll('.parallax');
-        
-        parallaxElements.forEach(el => {
-            const speed = el.dataset.speed || 0.5;
-            const yPos = -(scrolled * speed);
-            el.style.transform = `translate3d(0, ${yPos}px, 0)`;
-        });
-    }, { passive: true });
-}
-
+window.addEventListener('load', () => {
+    initAnimations();
+    initNavbar();
+    initReveals();
+});

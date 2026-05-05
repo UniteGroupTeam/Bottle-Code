@@ -3,66 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experiencia | Bottle Code Studio</title>
-    <!-- Preload Critical Fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap" as="style">
+    <title>Experiencia | ChilliCode Agency</title>
     
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.90/build/spline-viewer.js" defer></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        .experience-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        .experience-content {
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-        }
-        /* Fix overlap seen in screenshot */
-        .experience-stats {
-            margin-top: 5rem;
-            position: relative;
-            z-index: 10;
-        }
-    </style>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
-<body class="dark-mode">
-    <nav id="main-nav" class="glass-nav">
+<body>
+
+    <!-- 3D Layer -->
+    <div class="model-container" style="opacity: 0.1; filter: grayscale(1);">
+        <model-viewer id="skull-model-exp" 
+            src="https://raw.githubusercontent.com/UniteGroupTeam/mis-modelos-3d-v2-0/main/calavera_sugar_skull.glb"
+            auto-rotate
+            camera-orbit="90deg 75deg 5m"
+            disable-zoom
+            disable-pan>
+        </model-viewer>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="pill-nav">
         <div class="nav-content">
-            <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">Bottle<span>code</span></a></div>
+            <a href="index.html" class="logo">
+                <img src="https://i.imgur.com/QTzmlBC.png" alt="ChilliCode Logo" class="logo-img">
+            </a>
             <ul class="nav-links">
-                <li><a href="index.html">Volver al inicio</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Estudio</a></li>
+                <li><a href="index.html#servicios">Oficios</a></li>
+                <li><a href="index.html#proyectos">Obra</a></li>
             </ul>
+            <a href="index.html#contacto" class="nav-cta">Contactar</a>
         </div>
     </nav>
 
-    <main>
-        <section id="experiencia" class="experience-section">
-            <div class="spline-background-exp">
-                <spline-viewer url="https://prod.spline.design/nhscBjZDBcuApN22/scene.splinecode"></spline-viewer>
-            </div>
-            <div class="container experience-content">
-                <div class="experience-text">
-                    <span class="section-badge">EXPERIENCIA</span>
-                    <h2 class="title" style="font-size: 4rem; line-height: 1;">Arquitectura de <br><span class="accent-underline">élite</span></h2>
-                    <p style="font-size: 1.2rem; margin-top: 2rem;">Hemos desplegado infraestructuras digitales para marcas líderes en Latinoamérica. Nuestra especialidad es la escalabilidad y el rendimiento extremo.</p>
+    <main id="main-content">
+        <header class="section hero">
+            <div class="container">
+                <div class="content-wrapper">
+                    <span class="badge" style="background: rgba(215, 40, 47, 0.1); color: var(--red);">Casos de Éxito</span>
+                    <h1 class="title">Impacto que <br><span>Trasciende</span> el <br>Píxel.</h1>
+                    <p class="subtitle">Nuestra trayectoria está forjada en la entrega de productos digitales que no solo funcionan, sino que definen industrias.</p>
                     
-                    <div class="experience-stats">
-                        <div class="exp-stat">
-                            <span class="num">50+</span>
-                            <span class="lab">Portales Activos</span>
+                    <div style="display: flex; gap: 4rem; margin-top: 2rem;">
+                        <div>
+                            <span style="font-size: 3rem; font-family: 'Outfit'; font-weight: 800; color: var(--emerald);">50+</span>
+                            <span style="display: block; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; color: var(--color-text-muted);">Proyectos</span>
                         </div>
-                        <div class="exp-stat">
-                            <span class="num">1M+</span>
-                            <span class="lab">Usuarios Impactados</span>
+                        <div>
+                            <span style="font-size: 3rem; font-family: 'Outfit'; font-weight: 800; color: var(--red);">1M+</span>
+                            <span style="display: block; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; color: var(--color-text-muted);">Impacto</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Infraestructura de Élite</h2>
+                    <p class="section-subtitle">Desplegamos soluciones con la precisión de un artesano.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="main.js" defer></script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 ChilliCode Agency. Digital Craftsmanship Studio.</p>
+                <div class="socials">
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
