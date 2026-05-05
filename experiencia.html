@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiencia | Bottle Code Studio</title>
+    <!-- Preload Critical Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap" as="style">
+    
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.90/build/spline-viewer.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .experience-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .experience-content {
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+        /* Fix overlap seen in screenshot */
+        .experience-stats {
+            margin-top: 5rem;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <nav id="main-nav" class="glass-nav">
+        <div class="nav-content">
+            <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">Bottle<span>code</span></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Volver al inicio</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="experiencia" class="experience-section">
+            <div class="spline-background-exp">
+                <spline-viewer url="https://prod.spline.design/nhscBjZDBcuApN22/scene.splinecode"></spline-viewer>
+            </div>
+            <div class="container experience-content">
+                <div class="experience-text">
+                    <span class="section-badge">EXPERIENCIA</span>
+                    <h2 class="title" style="font-size: 4rem; line-height: 1;">Arquitectura de <br><span class="accent-underline">élite</span></h2>
+                    <p style="font-size: 1.2rem; margin-top: 2rem;">Hemos desplegado infraestructuras digitales para marcas líderes en Latinoamérica. Nuestra especialidad es la escalabilidad y el rendimiento extremo.</p>
+                    
+                    <div class="experience-stats">
+                        <div class="exp-stat">
+                            <span class="num">50+</span>
+                            <span class="lab">Portales Activos</span>
+                        </div>
+                        <div class="exp-stat">
+                            <span class="num">1M+</span>
+                            <span class="lab">Usuarios Impactados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js" defer></script>
+</body>
+</html>

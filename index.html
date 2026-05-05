@@ -11,8 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Spline 3D -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.90/build/spline-viewer.js"></script>
+    <!-- Preload Critical Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap" as="style">
+    
+    <!-- Spline 3D (Deferred) -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.90/build/spline-viewer.js" defer></script>
     
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
@@ -26,10 +29,9 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#hero">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#proceso">Proceso</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <div class="nav-actions">
@@ -45,23 +47,23 @@
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="spline-background">
-                <spline-viewer url="https://prod.spline.design/m5aYk1VhPD0GXIJE/scene.splinecode"></spline-viewer>
+                <spline-viewer data-url="https://prod.spline.design/m5aYk1VhPD0GXIJE/scene.splinecode"></spline-viewer>
             </div>
             <div class="hero-bg">
                 <div class="mesh-gradient"></div>
             </div>
             <div class="container hero-content">
-                <div class="hero-text">
-                    <div class="badge">
-                        <span class="dot"></span> Desarrollo web a medida
+                <div class="hero-text parallax" data-speed="0.2">
+                    <div class="badge reveal" data-delay="100">
+                        <span class="dot"></span> Software con Alma
                     </div>
-                    <h1>Creamos páginas <br>y apps webs que <br><span class="accent-underline">impulsan</span> tu negocio</h1>
-                    <p class="subtitle">Diseñamos y desarrollamos experiencias digitales modernas, rápidas y seguras que convierten visitantes en clientes.</p>
-                    <div class="hero-btns">
+                    <h1 class="reveal" data-delay="300">Creamos páginas <br>y apps webs que <br><span class="accent-underline">impulsan</span> tu negocio</h1>
+                    <p class="subtitle reveal" data-delay="500">Diseñamos y desarrollamos experiencias digitales modernas, rápidas y seguras que convierten visitantes en clientes.</p>
+                    <div class="hero-btns reveal" data-delay="700">
                         <a href="#contacto" class="btn primary">Quiero mi proyecto <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                         <a href="#proyectos" class="btn secondary">Ver proyectos</a>
                     </div>
-                    <div class="hero-features">
+                    <div class="hero-features reveal" data-delay="900">
                         <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Diseño 100% personalizado</span>
                         <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> Tecnologías modernas</span>
                         <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Soporte y mantenimiento</span>
@@ -73,7 +75,7 @@
         <!-- Servicios Section -->
         <section id="servicios" class="services-section">
             <div class="spline-background-robot">
-                <spline-viewer url="https://prod.spline.design/Hyrj0MIYWdWh6Va9/scene.splinecode"></spline-viewer>
+                <spline-viewer data-url="https://prod.spline.design/Hyrj0MIYWdWh6Va9/scene.splinecode"></spline-viewer>
             </div>
             <div class="container">
                 <div class="section-header center">
@@ -112,30 +114,6 @@
                         <h3>Mantenimiento</h3>
                         <p>Soporte, actualizaciones y mejoras continuas para que tu web siempre funcione.</p>
                         <a href="#" class="learn-more">Saber más <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experiencia Section -->
-        <section id="experiencia" class="experience-section">
-            <div class="spline-background-exp">
-                <spline-viewer url="https://prod.spline.design/nhscBjZDBcuApN22/scene.splinecode"></spline-viewer>
-            </div>
-            <div class="container experience-content">
-                <div class="experience-text reveal">
-                    <span class="section-badge">EXPERIENCIA</span>
-                    <h2 class="title">Arquitectura de <br><span class="accent-underline">élite</span></h2>
-                    <p>Hemos desplegado infraestructuras digitales para marcas líderes en Latinoamérica. Nuestra especialidad es la escalabilidad y el rendimiento extremo.</p>
-                    <div class="experience-stats">
-                        <div class="exp-stat">
-                            <span class="num">50+</span>
-                            <span class="lab">Portales Activos</span>
-                        </div>
-                        <div class="exp-stat">
-                            <span class="num">1M+</span>
-                            <span class="lab">Usuarios Impactados</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -185,18 +163,17 @@
             </div>
         </section>
 
-        </section>
-
         <!-- Final CTA Section -->
         <section class="final-cta">
             <div class="spline-background-cta">
-                <spline-viewer url="https://prod.spline.design/x2dep67gJrbEbwO4/scene.splinecode"></spline-viewer>
+                <spline-viewer data-url="https://prod.spline.design/x2dep67gJrbEbwO4/scene.splinecode"></spline-viewer>
             </div>
             <div class="container">
                 <div class="section-header center">
                     <span class="section-badge">CONTÁCTANOS</span>
-                    <h2 class="title">¿Listo para despegar?</h2>
-                    <p style="color: var(--text-secondary);">Interactúa con nuestro asistente 3D para comenzar.</p>
+                    <h2 class="title">¿Listo para crear algo <br><span class="accent-underline">legendario</span>?</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 3rem;">Hablemos de tu próximo gran paso digital.</p>
+                    <a href="mailto:hola@bottlecode.studio" class="btn primary large">Iniciar Proyecto</a>
                 </div>
             </div>
         </section>
@@ -213,15 +190,14 @@
                     <h4>Navegación</h4>
                     <ul>
                         <li><a href="#hero">Inicio</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
                         <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#proyectos">Proyectos</a></li>
                     </ul>
                 </div>
                 <div class="footer-links-group">
                     <h4>Contacto</h4>
                     <ul>
                         <li><a href="mailto:hola@bottlecode.com">hola@bottlecode.com</a></li>
-                        <li><a href="#">Agendar llamada</a></li>
                         <li><a href="https://instagram.com/rodricg30" target="_blank">Instagram</a></li>
                     </ul>
                 </div>
@@ -232,6 +208,6 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
 </body>
 </html>
